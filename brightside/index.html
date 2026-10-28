@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Brightside Dental</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:wght@400;500;600&display=swap">
+<style>
+/* Layout: calm two-column hero with a next-appointments card, services with "from" prices, first-visit sequence, hours + booking */
+:root {
+  --bg: #F3F6F6;
+  --surface: #FFFFFF;
+  --ink: #12303A;
+  --muted: #557079;
+  --line: #D3DFE1;
+  --teal: #0E6B72;
+  --coral: #D8604E;
+  --tint: #E2EFEF;
+  --on-accent: #FFFFFF;
+  --display: "Instrument Serif", Georgia, "Times New Roman", serif;
+  --body: "Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --radius: 18px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0F1D21; --surface: #15282D; --ink: #E3EEEF; --muted: #93AEB4; --line: #24393F;
+    --teal: #4FC0C6; --coral: #F08A78; --tint: #183338; --on-accent: #0F1D21; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0F1D21; --surface: #15282D; --ink: #E3EEEF; --muted: #93AEB4; --line: #24393F;
+  --teal: #4FC0C6; --coral: #F08A78; --tint: #183338; --on-accent: #0F1D21; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
+body { background: var(--bg); color: var(--ink); font: 400 1rem/1.65 var(--body); }
+.wrap { max-width: 1120px; margin: 0 auto; padding-inline: 20px; }
+:focus-visible { outline: 2px solid var(--teal); outline-offset: 3px; border-radius: 6px; }
+h1, h2, h3 { font-family: var(--display); font-weight: 400; line-height: 1.04; margin: 0; text-wrap: balance; }
+.label { font: 600 .74rem/1 var(--body); letter-spacing: .12em; text-transform: uppercase; color: var(--teal); }
+.btn { display: inline-flex; align-items: center; justify-content: center; padding: .8rem 1.35rem; border-radius: 999px; font: 600 .95rem var(--body); text-decoration: none; border: 1.5px solid var(--line); color: var(--ink); background: var(--surface); cursor: pointer; transition: transform .15s; }
+.btn:hover { transform: translateY(-1px); }
+.btn-primary { background: var(--teal); border-color: var(--teal); color: var(--on-accent); }
+
+header.bar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 10; background: color-mix(in srgb, var(--bg) 90%, transparent); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+.bar .wrap { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-block: .8rem; }
+.logo { display: flex; align-items: center; gap: .5rem; font: 1.55rem var(--display); text-decoration: none; color: var(--ink); }
+.logo svg { width: 26px; height: 26px; }
+nav ul { display: flex; gap: 1.5rem; list-style: none; margin: 0; padding: 0; font-weight: 500; }
+nav a { text-decoration: none; color: var(--ink); }
+nav a:hover { color: var(--teal); }
+@media (max-width: 760px) { nav ul { display: none; } }
+
+.hero { display: grid; grid-template-columns: 1.15fr .85fr; gap: 3rem; align-items: center; padding-block: 4.5rem 3.5rem; }
+.hero > * { min-width: 0; }
+.hero h1 { font-size: clamp(2.8rem, 6.5vw, 5.2rem); margin-block: 1rem 1.2rem; }
+.hero h1 em { color: var(--teal); }
+.hero p { font-size: 1.12rem; color: var(--muted); max-width: 33rem; margin: 0 0 2rem; }
+.hero .actions { display: flex; flex-wrap: wrap; gap: .8rem; }
+.badges { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 2rem; }
+.badges span { font-size: .82rem; font-weight: 500; padding: .35rem .75rem; border-radius: 999px; background: var(--tint); color: var(--ink); }
+.slots { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 1.6rem; box-shadow: 0 18px 40px -28px color-mix(in srgb, var(--ink) 60%, transparent); }
+.slots h2 { font-size: 1.7rem; margin-bottom: .3rem; }
+.slots > p { margin: 0 0 1.2rem; color: var(--muted); font-size: .92rem; }
+.slot-days { display: grid; gap: 1rem; }
+.slot-days h3 { font: 600 .8rem var(--body); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-bottom: .5rem; }
+.times { display: flex; flex-wrap: wrap; gap: .5rem; }
+.time { font: 600 .92rem var(--body); font-variant-numeric: tabular-nums; padding: .5rem .85rem; border-radius: 10px; border: 1.5px solid var(--line); background: var(--bg); color: var(--ink); cursor: pointer; }
+.time[aria-pressed="true"] { background: var(--teal); border-color: var(--teal); color: var(--on-accent); }
+.slots .picked { margin: 1.2rem 0 0; font-size: .92rem; color: var(--muted); }
+.slots .picked strong { color: var(--ink); }
+@media (max-width: 860px) { .hero { grid-template-columns: 1fr; padding-block: 2.5rem; } }
+
+section { padding-block: 4rem; }
+.head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 1rem; margin-bottom: 2rem; }
+.head h2 { font-size: clamp(2.2rem, 4.5vw, 3.2rem); margin-top: .6rem; }
+.head p { color: var(--muted); max-width: 27rem; margin: 0; }
+
+.services { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.2rem; }
+.service { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 1.5rem; display: grid; gap: .5rem; align-content: start; }
+.service h3 { font-size: 1.6rem; }
+.service p { margin: 0; color: var(--muted); }
+.service .from { font-weight: 600; color: var(--teal); font-variant-numeric: tabular-nums; }
+@media (max-width: 860px) { .services { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .services { grid-template-columns: 1fr; } }
+
+.steps { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1.5rem; counter-reset: step; list-style: none; padding: 0; margin: 0; }
+.steps li { counter-increment: step; border-top: 2px solid var(--teal); padding-top: 1rem; }
+.steps li::before { content: "Step " counter(step); display: block; font: 600 .75rem var(--body); letter-spacing: .1em; text-transform: uppercase; color: var(--teal); margin-bottom: .5rem; }
+.steps h3 { font-size: 1.4rem; margin-bottom: .3rem; }
+.steps p { margin: 0; color: var(--muted); font-size: .95rem; }
+@media (max-width: 860px) { .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 520px) { .steps { grid-template-columns: 1fr; } }
+
+.visit { display: grid; grid-template-columns: .9fr 1.1fr; gap: 2.5rem; }
+.visit > * { min-width: 0; }
+@media (max-width: 860px) { .visit { grid-template-columns: 1fr; } }
+.hours { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; margin-block: 1.2rem; }
+.hours td { padding: .55rem 0; border-bottom: 1px solid var(--line); }
+.hours td:last-child { text-align: right; }
+.hours tr.today td { color: var(--teal); font-weight: 600; }
+form.book { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 1.6rem; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+form.book h3 { grid-column: 1 / -1; font-size: 1.9rem; }
+.field { display: grid; gap: .35rem; }
+.field.full { grid-column: 1 / -1; }
+.field label { font: 600 .78rem var(--body); color: var(--muted); }
+.field input, .field select { font: 1rem var(--body); padding: .7rem .85rem; border-radius: 10px; border: 1.5px solid var(--line); background: var(--bg); color: var(--ink); width: 100%; }
+.field input:focus, .field select:focus { border-color: var(--teal); outline: none; }
+form.book .btn { grid-column: 1 / -1; }
+.notice { grid-column: 1 / -1; margin: 0; padding: .9rem 1rem; border-radius: 10px; background: var(--tint); }
+@media (max-width: 480px) { form.book { grid-template-columns: 1fr; } }
+
+footer { border-top: 1px solid var(--line); padding-block: 1.8rem; color: var(--muted); font-size: .85rem; }
+footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; }
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="wrap">
+    <a class="logo" href="#top"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M9 4c-3.5 0-6 3-6 7 0 5 2 7 3 12 .6 3 1.6 5 3 5s2-2.5 2.5-5c.4-2 1.2-3 2.5-3s2.1 1 2.5 3c.5 2.5 1.1 5 2.5 5s2.4-2 3-5c1-5 3-7 3-12 0-4-2.5-7-6-7-2.3 0-3.4 1.2-5 1.2S11.3 4 9 4z" fill="var(--teal)"/></svg>Brightside Dental</a>
+    <nav aria-label="Main"><ul>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#first-visit">First visit</a></li>
+      <li><a href="#visit">Hours</a></li>
+    </ul></nav>
+    <a class="btn btn-primary" href="#visit">Book online</a>
+  </div>
+</header>
+
+<main id="top">
+  <div class="wrap hero">
+    <div>
+      <span class="label">Family dentistry · New patients welcome</span>
+      <h1>Gentle care for <em>every smile</em> in the family.</h1>
+      <p>Check-ups, cleanings, and whitening in a calm, modern clinic. Evening appointments on weekdays, and we always explain the cost before we start.</p>
+      <div class="actions">
+        <a class="btn btn-primary" href="#visit">Book a check-up</a>
+        <a class="btn" href="#services">View services</a>
+      </div>
+      <div class="badges"><span>Evening hours</span><span>Kids from age 2</span><span>Direct insurance billing</span></div>
+    </div>
+    <div class="slots" aria-label="Next available appointments">
+      <h2>Next available</h2>
+      <p>Tap a time to hold it while you book.</p>
+      <div class="slot-days" id="slotDays"></div>
+      <p class="picked" id="picked">Selected: <strong>none yet</strong></p>
+    </div>
+  </div>
+
+  <section id="services" style="padding-top:1rem">
+    <div class="wrap">
+      <div class="head"><div><span class="label">Services</span><h2>What we do</h2></div><p>Prices are typical starting points before insurance. You get a written estimate at your visit.</p></div>
+      <div class="services">
+        <article class="service"><h3>Check-up &amp; cleaning</h3><p>Exam, scale and polish, and two bitewing X-rays.</p><span class="from">From $120</span></article>
+        <article class="service"><h3>Whitening</h3><p>In-chair session plus custom take-home trays.</p><span class="from">From $350</span></article>
+        <article class="service"><h3>Fillings</h3><p>Tooth-coloured composite fillings, usually in one visit.</p><span class="from">From $160</span></article>
+        <article class="service"><h3>Kids' dentistry</h3><p>Short, friendly visits with fluoride and sealants.</p><span class="from">From $85</span></article>
+        <article class="service"><h3>Invisalign</h3><p>Clear aligners with a 3D scan, no messy moulds.</p><span class="from">Free consultation</span></article>
+        <article class="service"><h3>Emergency visits</h3><p>Same-day slots held every weekday for pain or breaks.</p><span class="from">From $95</span></article>
+      </div>
+    </div>
+  </section>
+
+  <section id="first-visit" style="padding-top:0">
+    <div class="wrap">
+      <div class="head"><div><span class="label">Your first visit</span><h2>What to expect</h2></div></div>
+      <ol class="steps">
+        <li><h3>Book online</h3><p>Pick a time that suits you. It takes about a minute.</p></li>
+        <li><h3>Quick forms</h3><p>We text you a short health form to fill in before you arrive.</p></li>
+        <li><h3>Exam &amp; clean</h3><p>About 50 minutes with your dentist and hygienist.</p></li>
+        <li><h3>Your plan</h3><p>A clear written plan and cost, with no pressure to decide that day.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="visit" style="padding-top:0">
+    <div class="wrap visit">
+      <div>
+        <span class="label">Visit us</span>
+        <h2 style="font-size:clamp(2.2rem,4.5vw,3.2rem);margin-top:.6rem">Hours &amp; location</h2>
+        <table class="hours" aria-label="Opening hours"><tbody id="hours"></tbody></table>
+        <p style="color:var(--muted);margin:0"><strong style="color:var(--ink)">Address:</strong> 88 Willow Avenue, Suite 210<br><strong style="color:var(--ink)">Phone:</strong> +1 (555) 016-4410</p>
+      </div>
+      <form class="book" id="book" novalidate>
+        <h3>Request an appointment</h3>
+        <div class="field full"><label for="pname">Full name</label><input id="pname" name="pname" autocomplete="name" value="Sara Mansour"></div>
+        <div class="field"><label for="reason">Reason for visit</label>
+          <select id="reason" name="reason"><option>Check-up &amp; cleaning</option><option>Whitening</option><option>Tooth pain</option><option>Kids' visit</option><option>Invisalign consult</option></select></div>
+        <div class="field"><label for="pphone">Phone</label><input id="pphone" name="pphone" type="tel" autocomplete="tel" value="+1 555 010 7781"></div>
+        <p class="notice" id="bnotice" hidden></p>
+        <button class="btn btn-primary" type="submit">Request appointment</button>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer><div class="wrap"><span>© 2026 Brightside Dental</span><span>Portfolio demo · fictional clinic</span></div></footer>
+
+<script>
+const days = [];
+const base = new Date();
+const times = [["09:30", "11:00", "15:45"], ["08:45", "13:15", "17:30", "18:15"], ["10:00", "16:30"]];
+let d = new Date(base), added = 0;
+while (added < 3) {
+  d.setDate(d.getDate() + 1);
+  if (d.getDay() === 0) continue;
+  days.push([new Date(d), times[added]]); added++;
+}
+let selected = null;
+const picked = document.getElementById("picked");
+document.getElementById("slotDays").innerHTML = days.map(([day, ts], i) =>
+  `<div><h3>${day.toLocaleDateString(undefined, { weekday: "long", month: "short", day: "numeric" })}</h3><div class="times">${
+    ts.map(t => `<button type="button" class="time" aria-pressed="false" data-label="${day.toLocaleDateString(undefined, { weekday: "short", month: "short", day: "numeric" })} at ${t}">${t}</button>`).join("")
+  }</div></div>`).join("");
+document.querySelectorAll(".time").forEach(b => b.addEventListener("click", () => {
+  document.querySelectorAll(".time").forEach(x => x.setAttribute("aria-pressed", "false"));
+  b.setAttribute("aria-pressed", "true");
+  selected = b.dataset.label;
+  picked.innerHTML = `Selected: <strong>${selected}</strong>`;
+}));
+document.querySelector(".time").click();
+
+const HOURS = [["Monday", "08:00 – 19:00"], ["Tuesday", "08:00 – 19:00"], ["Wednesday", "08:00 – 19:00"], ["Thursday", "08:00 – 20:00"], ["Friday", "08:00 – 16:00"], ["Saturday", "09:00 – 14:00"], ["Sunday", "Closed"]];
+const today = (new Date().getDay() + 6) % 7;
+document.getElementById("hours").innerHTML = HOURS.map(([dname, h], i) =>
+  `<tr${i === today ? ' class="today"' : ""}><td>${dname}${i === today ? " (today)" : ""}</td><td>${h}</td></tr>`).join("");
+
+document.getElementById("book").addEventListener("submit", e => {
+  e.preventDefault();
+  const f = e.target, n = document.getElementById("bnotice");
+  const name = f.pname.value.trim();
+  n.textContent = name
+    ? `Thanks, ${name}. Your request for ${f.reason.value.replace("&amp;", "&")}${selected ? " on " + selected : ""} is in. We'll call to confirm. (Demo site: nothing was sent.)`
+    : "Add your name so we can confirm your appointment.";
+  n.hidden = false;
+});
+</script>
+</body>
+</html>
