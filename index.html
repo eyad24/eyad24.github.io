@@ -27,8 +27,8 @@ h1{font-size:clamp(34px,6vw,56px)}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:20px}
 .card{background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden;text-decoration:none;color:inherit;display:grid;transition:transform .15s ease,box-shadow .15s ease}
 .card:hover{transform:translateY(-2px);box-shadow:0 14px 34px rgba(0,0,0,.12)}
-.card img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;object-position:top;border-bottom:1px solid var(--line)}
-.card div{padding:16px 18px 20px;display:grid;gap:6px}
+.thumb{aspect-ratio:16/9;display:grid;place-items:center;font-family:var(--display);font-weight:700;font-size:26px;color:#fff;letter-spacing:.01em}
+.card > div{padding:16px 18px 20px;display:grid;gap:6px}
 .card h3{font-size:20px}
 .card p{margin:0;color:var(--muted);font-size:15px}
 .tags{font-family:var(--mono);font-size:12px;color:var(--accent)}
@@ -53,10 +53,10 @@ footer{color:var(--muted);font-size:14px}
   <section aria-labelledby="work">
     <h2 id="work" style="font-size:28px;margin-bottom:18px">Selected work</h2>
     <div class="grid">
-      <a class="card" href="nakhla/"><img src="img/nakhla.jpg" alt="Nakhla Roastery website" loading="lazy"><div><span class="tags">Arabic · RTL · Responsive</span><h3>Nakhla Roastery</h3><p>Arabic site for a coffee roaster: priced menu, branch hours, order form, WhatsApp button.</p></div></a>
-      <a class="card" href="brightside/"><img src="img/brightside.jpg" alt="Brightside Dental website" loading="lazy"><div><span class="tags">Healthcare · Booking</span><h3>Brightside Dental</h3><p>Clinic site with services, team profiles and an appointment request flow.</p></div></a>
-      <a class="card" href="northline/"><img src="img/northline.jpg" alt="Northline Strength website" loading="lazy"><div><span class="tags">Fitness · Memberships</span><h3>Northline Strength</h3><p>Gym site with a class schedule, membership plans and sign-up flow.</p></div></a>
-      <a class="card" href="saj-sumac/"><img src="img/saj-sumac.jpg" alt="Saj and Sumac website" loading="lazy"><div><span class="tags">Restaurant · Reservations</span><h3>Saj &amp; Sumac</h3><p>Restaurant site with a tabbed menu, story section and table-booking form.</p></div></a>
+      <a class="card" href="nakhla/"><span class="thumb" style="background:#16302A;color:#D99A1E" aria-hidden="true">محمصة نخلة</span><div><span class="tags">Arabic · RTL · Responsive</span><h3>Nakhla Roastery</h3><p>Arabic site for a coffee roaster: priced menu, branch hours, order form, WhatsApp button.</p></div></a>
+      <a class="card" href="brightside/"><span class="thumb" style="background:#1F4E79;color:#7CC6FE" aria-hidden="true">Brightside Dental</span><div><span class="tags">Healthcare · Booking</span><h3>Brightside Dental</h3><p>Clinic site with services, team profiles and an appointment request flow.</p></div></a>
+      <a class="card" href="northline/"><span class="thumb" style="background:#111111;color:#E4FF3A" aria-hidden="true">NORTHLINE</span><div><span class="tags">Fitness · Memberships</span><h3>Northline Strength</h3><p>Gym site with a class schedule, membership plans and sign-up flow.</p></div></a>
+      <a class="card" href="saj-sumac/"><span class="thumb" style="background:#7B2C3A;color:#C98A0E" aria-hidden="true">Saj &amp; Sumac</span><div><span class="tags">Restaurant · Reservations</span><h3>Saj &amp; Sumac</h3><p>Restaurant site with a tabbed menu, story section and table-booking form.</p></div></a>
     </div>
   </section>
 
