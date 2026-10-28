@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Northline Strength</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=Manrope:wght@400;500;700&display=swap">
+<style>
+/* Layout: condensed poster-type hero beside a live class board, then programs, memberships, trial form */
+:root {
+  --bg: #E8EAEC;        /* concrete */
+  --surface: #F6F7F8;
+  --ink: #14171B;
+  --muted: #59606A;
+  --line: #C9CDD2;
+  --cobalt: #2346D8;
+  --signal: #E25A26;
+  --on-accent: #FFFFFF;
+  --display: "Big Shoulders Display", "Arial Narrow", Impact, sans-serif;
+  --body: "Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --radius: 10px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #121418; --surface: #1A1D22; --ink: #ECEEF1; --muted: #9AA2AD; --line: #2C3138;
+    --cobalt: #6E8BFF; --signal: #FF7A47; --on-accent: #0E1013; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #121418; --surface: #1A1D22; --ink: #ECEEF1; --muted: #9AA2AD; --line: #2C3138;
+  --cobalt: #6E8BFF; --signal: #FF7A47; --on-accent: #0E1013; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
+body { background: var(--bg); color: var(--ink); font: 400 1rem/1.6 var(--body); }
+.wrap { max-width: 1140px; margin: 0 auto; padding-inline: 20px; }
+:focus-visible { outline: 2px solid var(--cobalt); outline-offset: 3px; }
+h1, h2, h3 { font-family: var(--display); font-weight: 900; text-transform: uppercase; line-height: .92; letter-spacing: .01em; margin: 0; text-wrap: balance; }
+.label { font: 700 .72rem/1 var(--body); letter-spacing: .16em; text-transform: uppercase; color: var(--cobalt); }
+.btn { display: inline-flex; align-items: center; justify-content: center; padding: .85rem 1.4rem; border-radius: 6px; font: 700 .95rem var(--body); text-decoration: none; border: 2px solid var(--ink); color: var(--ink); background: transparent; cursor: pointer; transition: transform .15s; }
+.btn:hover { transform: translateY(-1px); }
+.btn-primary { background: var(--cobalt); border-color: var(--cobalt); color: var(--on-accent); }
+
+header.bar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); border-bottom: 2px solid var(--ink); }
+.bar .wrap { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-block: .8rem; }
+.logo { font: 900 1.6rem/1 var(--display); text-transform: uppercase; text-decoration: none; color: var(--ink); letter-spacing: .02em; }
+.logo span { color: var(--cobalt); }
+nav ul { display: flex; gap: 1.5rem; list-style: none; margin: 0; padding: 0; font-weight: 700; font-size: .9rem; }
+nav a { text-decoration: none; color: var(--ink); }
+nav a:hover { color: var(--cobalt); }
+@media (max-width: 760px) { nav ul { display: none; } }
+
+.hero { display: grid; grid-template-columns: 1.2fr .8fr; gap: 3rem; align-items: center; padding-block: 4rem 3.5rem; }
+.hero > * { min-width: 0; }
+.hero h1 { font-size: clamp(3.4rem, 9vw, 7.2rem); margin-block: 1rem 1.2rem; }
+.hero h1 em { font-style: normal; color: var(--cobalt); }
+.hero p { font-size: 1.12rem; color: var(--muted); max-width: 32rem; margin: 0 0 2rem; }
+.hero .actions { display: flex; flex-wrap: wrap; gap: .8rem; }
+.board { background: var(--ink); color: var(--bg); border-radius: var(--radius); padding: 1.4rem; }
+.board header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 1rem; }
+.board h2 { font-size: 1.6rem; }
+.board .day { font: 700 .75rem var(--body); letter-spacing: .12em; text-transform: uppercase; opacity: .7; }
+.board ol { list-style: none; margin: 0; padding: 0; display: grid; gap: .1rem; }
+.board li { display: grid; grid-template-columns: 4.2rem 1fr auto; gap: .8rem; align-items: center; padding: .7rem 0; border-top: 1px solid color-mix(in srgb, var(--bg) 20%, transparent); }
+.board time { font: 700 1.25rem var(--display); font-variant-numeric: tabular-nums; }
+.board .cls { font-weight: 700; }
+.board .coach { display: block; font-size: .8rem; opacity: .7; font-weight: 400; }
+.spots { font: 700 .72rem var(--body); padding: .3rem .55rem; border-radius: 4px; background: color-mix(in srgb, var(--bg) 14%, transparent); white-space: nowrap; }
+.spots.low { background: var(--signal); color: #fff; }
+@media (max-width: 860px) { .hero { grid-template-columns: 1fr; padding-block: 2.5rem; } }
+
+.stats { border-block: 2px solid var(--ink); }
+.stats .wrap { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; padding-block: 1.4rem; }
+.stats div { font-size: .85rem; color: var(--muted); }
+.stats strong { display: block; font: 900 2.4rem/1 var(--display); color: var(--ink); }
+@media (max-width: 640px) { .stats .wrap { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+section { padding-block: 4rem; }
+.head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 1rem; margin-bottom: 2rem; }
+.head h2 { font-size: clamp(2.4rem, 5vw, 3.8rem); margin-top: .5rem; }
+.head p { color: var(--muted); max-width: 26rem; margin: 0; }
+
+.programs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.2rem; }
+.program { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 1.5rem; display: grid; gap: .6rem; align-content: start; }
+.program h3 { font-size: 2rem; }
+.program p { margin: 0; color: var(--muted); }
+.program .meta { font-size: .82rem; font-weight: 700; color: var(--cobalt); }
+@media (max-width: 820px) { .programs { grid-template-columns: 1fr; } }
+
+.plans { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.2rem; }
+.plan { border: 2px solid var(--ink); border-radius: var(--radius); padding: 1.6rem; display: grid; gap: 1rem; align-content: start; }
+.plan.featured { background: var(--cobalt); border-color: var(--cobalt); color: var(--on-accent); }
+.plan h3 { font-size: 1.6rem; }
+.price { font: 900 3.2rem/1 var(--display); font-variant-numeric: tabular-nums; }
+.price small { font: 500 .9rem var(--body); opacity: .75; }
+.plan ul { margin: 0; padding-left: 1.1rem; display: grid; gap: .35rem; }
+.plan.featured .btn { border-color: var(--on-accent); color: var(--on-accent); }
+@media (max-width: 820px) { .plans { grid-template-columns: 1fr; } }
+
+.trial { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; align-items: start; }
+.trial > * { min-width: 0; }
+.trial h2 { font-size: clamp(2.4rem, 5vw, 3.8rem); margin-block: .5rem 1rem; }
+.trial p { color: var(--muted); }
+form.join { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 1.6rem; display: grid; gap: 1rem; }
+.field { display: grid; gap: .35rem; }
+.field label { font: 700 .75rem var(--body); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+.field input, .field select { font: 1rem var(--body); padding: .7rem .8rem; border-radius: 6px; border: 1.5px solid var(--line); background: var(--bg); color: var(--ink); width: 100%; }
+.field input:focus, .field select:focus { border-color: var(--cobalt); outline: none; }
+.notice { margin: 0; padding: .9rem 1rem; border-radius: 6px; border-left: 4px solid var(--cobalt); background: var(--bg); }
+@media (max-width: 820px) { .trial { grid-template-columns: 1fr; } }
+
+footer { border-top: 2px solid var(--ink); padding-block: 1.6rem; font-size: .85rem; color: var(--muted); }
+footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; }
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="wrap">
+    <a class="logo" href="#top">North<span>line</span></a>
+    <nav aria-label="Main"><ul>
+      <li><a href="#programs">Programs</a></li>
+      <li><a href="#plans">Memberships</a></li>
+      <li><a href="#trial">Free trial</a></li>
+    </ul></nav>
+    <a class="btn btn-primary" href="#trial">Book a free class</a>
+  </div>
+</header>
+
+<main id="top">
+  <div class="wrap hero">
+    <div>
+      <span class="label">Strength &amp; conditioning gym</span>
+      <h1>Lift heavy. <em>Train with a plan.</em></h1>
+      <p>Coached barbell classes in small groups of 10. Every session follows a 12-week program, so you know exactly what you're working toward.</p>
+      <div class="actions">
+        <a class="btn btn-primary" href="#trial">Book a free class</a>
+        <a class="btn" href="#plans">See memberships</a>
+      </div>
+    </div>
+    <div class="board" aria-label="Today's classes">
+      <header><h2>Today's classes</h2><span class="day" id="day">Thursday</span></header>
+      <ol>
+        <li><time>06:00</time><span class="cls">Barbell Basics<span class="coach">Coach Dana</span></span><span class="spots">4 spots</span></li>
+        <li><time>07:15</time><span class="cls">Powerlifting<span class="coach">Coach Sami</span></span><span class="spots low">1 spot</span></li>
+        <li><time>12:00</time><span class="cls">Lunch Conditioning<span class="coach">Coach Lee</span></span><span class="spots">6 spots</span></li>
+        <li><time>17:30</time><span class="cls">Olympic Lifting<span class="coach">Coach Dana</span></span><span class="spots low">2 spots</span></li>
+        <li><time>19:00</time><span class="cls">Open Gym<span class="coach">Floor staff</span></span><span class="spots">Open</span></li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="stats">
+    <div class="wrap">
+      <div><strong>8</strong>lifting platforms</div>
+      <div><strong>10</strong>people max per class</div>
+      <div><strong>12-wk</strong>program cycles</div>
+      <div><strong>5 am</strong>doors open daily</div>
+    </div>
+  </div>
+
+  <section id="programs">
+    <div class="wrap">
+      <div class="head"><div><span class="label">Programs</span><h2>Pick your path</h2></div><p>All levels welcome. Coaches scale every workout to where you are today.</p></div>
+      <div class="programs">
+        <article class="program"><span class="meta">3× per week · beginner</span><h3>Barbell Basics</h3><p>Learn the squat, deadlift, bench, and press with perfect form before adding weight.</p></article>
+        <article class="program"><span class="meta">4× per week · intermediate</span><h3>Powerlifting</h3><p>Percentage-based training with a test day at the end of every cycle.</p></article>
+        <article class="program"><span class="meta">2× per week · all levels</span><h3>Conditioning</h3><p>Sled pushes, rowers, and carries. 40 minutes, finished by lunch.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section id="plans" style="padding-top:0">
+    <div class="wrap">
+      <div class="head"><div><span class="label">Memberships</span><h2>Simple monthly pricing</h2></div><p>No joining fee. Cancel with 30 days' notice.</p></div>
+      <div class="plans">
+        <article class="plan"><h3>Open Gym</h3><div class="price">$49<small> / month</small></div><ul><li>Gym floor 5 am – 10 pm</li><li>Locker and showers</li></ul><a class="btn" href="#trial">Start</a></article>
+        <article class="plan featured"><h3>Classes</h3><div class="price">$119<small> / month</small></div><ul><li>Unlimited coached classes</li><li>Open gym included</li><li>Quarterly strength test</li></ul><a class="btn" href="#trial">Start</a></article>
+        <article class="plan"><h3>1-on-1 Coaching</h3><div class="price">$260<small> / month</small></div><ul><li>Custom program</li><li>4 private sessions</li><li>Weekly check-ins</li></ul><a class="btn" href="#trial">Start</a></article>
+      </div>
+    </div>
+  </section>
+
+  <section id="trial" style="padding-top:0">
+    <div class="wrap trial">
+      <div>
+        <span class="label">Free trial</span>
+        <h2>Your first class is on us</h2>
+        <p>Pick a class, show up 10 minutes early, and a coach will walk you through the warm-up. Bring water and flat shoes.</p>
+        <p><strong>Address:</strong> 220 Foundry Street, Unit 4<br><strong>Phone:</strong> +1 (555) 018-7731</p>
+      </div>
+      <form class="join" id="join" novalidate>
+        <div class="field"><label for="jname">Name</label><input id="jname" name="jname" autocomplete="name" value="Omar Farid"></div>
+        <div class="field"><label for="jclass">Class</label>
+          <select id="jclass" name="jclass"><option>Barbell Basics</option><option>Powerlifting</option><option>Conditioning</option><option>Olympic Lifting</option></select></div>
+        <div class="field"><label for="jphone">Phone</label><input id="jphone" name="jphone" type="tel" autocomplete="tel" value="+1 555 010 2290"></div>
+        <p class="notice" id="jnotice" hidden></p>
+        <button class="btn btn-primary" type="submit">Book my free class</button>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer><div class="wrap"><span>© 2026 Northline Strength</span><span>Portfolio demo · fictional gym</span></div></footer>
+
+<script>
+document.getElementById("day").textContent = new Date().toLocaleDateString(undefined, { weekday: "long" });
+document.getElementById("join").addEventListener("submit", e => {
+  e.preventDefault();
+  const f = e.target, n = document.getElementById("jnotice");
+  const name = f.jname.value.trim();
+  n.textContent = name ? `Thanks, ${name}. We'll text you to confirm your free ${f.jclass.value} class. (Demo site: nothing was sent.)` : "Add your name so the coach knows who to expect.";
+  n.hidden = false;
+});
+</script>
+</body>
+</html>
