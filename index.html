@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Eyad Youssef | Web Developer</title>
+<meta name="description" content="Eyad Youssef: web developer building fast, responsive English and Arabic websites. AWS Certified Cloud Practitioner and AI Practitioner.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=IBM+Plex+Sans:wght@400;500&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F4F5F2;--panel:#fff;--ink:#16201C;--muted:#5B6661;--line:#DCE0DA;--accent:#0F7A63;
+--display:"Bricolage Grotesque",system-ui,sans-serif;--body:"IBM Plex Sans",system-ui,sans-serif;--mono:"IBM Plex Mono",ui-monospace,monospace}
+@media (prefers-color-scheme:dark){:root{--bg:#0F1412;--panel:#171D1A;--ink:#E7ECE8;--muted:#97A39C;--line:#28312C;--accent:#4CC7A4;color-scheme:dark}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6}
+.wrap{max-width:1040px;margin-inline:auto;padding:56px 20px 64px;display:grid;gap:48px}
+h1,h2,h3{font-family:var(--display);margin:0;line-height:1.15;text-wrap:balance}
+h1{font-size:clamp(34px,6vw,56px)}
+.role{font-size:20px;color:var(--muted);margin:10px 0 18px}
+.lead{max-width:62ch;margin:0}
+.meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.chip{font-family:var(--mono);font-size:13px;border:1px solid var(--line);background:var(--panel);border-radius:99px;padding:5px 12px}
+.contact{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}
+.btn{display:inline-block;text-decoration:none;font-weight:500;border-radius:10px;padding:10px 18px;border:1px solid var(--line);color:var(--ink);background:var(--panel)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:20px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden;text-decoration:none;color:inherit;display:grid;transition:transform .15s ease,box-shadow .15s ease}
+.card:hover{transform:translateY(-2px);box-shadow:0 14px 34px rgba(0,0,0,.12)}
+.card img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;object-position:top;border-bottom:1px solid var(--line)}
+.card div{padding:16px 18px 20px;display:grid;gap:6px}
+.card h3{font-size:20px}
+.card p{margin:0;color:var(--muted);font-size:15px}
+.tags{font-family:var(--mono);font-size:12px;color:var(--accent)}
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:20px}
+.box{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:20px}
+.box h3{font-size:18px;margin-bottom:8px}
+.box ul{margin:0;padding-left:18px}
+footer{color:var(--muted);font-size:14px}
+@media (prefers-reduced-motion:reduce){.card{transition:none}}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <header>
+    <h1>Eyad Youssef</h1>
+    <p class="role">Web Developer · AWS Certified Cloud Practitioner &amp; AI Practitioner</p>
+    <p class="lead">I build fast, responsive websites in English and Arabic, from landing pages for small businesses to full right-to-left Arabic sites. Computer Programming graduate (Sheridan College, Canada), now studying Cyber Security at Coventry University.</p>
+    <div class="meta"><span class="chip">HTML · CSS · JavaScript</span><span class="chip">Java · C# · Python · SQL</span><span class="chip">Arabic RTL</span><span class="chip">AWS</span></div>
+    <div class="contact"><a class="btn primary" href="mailto:eyadyoussef.cp@gmail.com">eyadyoussef.cp@gmail.com</a><a class="btn" href="http://www.fiverr.com/s/DmmoVVD" target="_blank" rel="noopener">Hire me on Fiverr</a></div>
+  </header>
+
+  <section aria-labelledby="work">
+    <h2 id="work" style="font-size:28px;margin-bottom:18px">Selected work</h2>
+    <div class="grid">
+      <a class="card" href="nakhla/"><img src="img/nakhla.jpg" alt="Nakhla Roastery website" loading="lazy"><div><span class="tags">Arabic · RTL · Responsive</span><h3>Nakhla Roastery</h3><p>Arabic site for a coffee roaster: priced menu, branch hours, order form, WhatsApp button.</p></div></a>
+      <a class="card" href="brightside/"><img src="img/brightside.jpg" alt="Brightside Dental website" loading="lazy"><div><span class="tags">Healthcare · Booking</span><h3>Brightside Dental</h3><p>Clinic site with services, team profiles and an appointment request flow.</p></div></a>
+      <a class="card" href="northline/"><img src="img/northline.jpg" alt="Northline Strength website" loading="lazy"><div><span class="tags">Fitness · Memberships</span><h3>Northline Strength</h3><p>Gym site with a class schedule, membership plans and sign-up flow.</p></div></a>
+      <a class="card" href="saj-sumac/"><img src="img/saj-sumac.jpg" alt="Saj and Sumac website" loading="lazy"><div><span class="tags">Restaurant · Reservations</span><h3>Saj &amp; Sumac</h3><p>Restaurant site with a tabbed menu, story section and table-booking form.</p></div></a>
+    </div>
+  </section>
+
+  <section class="cols" aria-label="Background">
+    <div class="box"><h3>Education</h3><ul><li>Cyber Security, Coventry University (in progress)</li><li>Diploma, Computer Programming, Sheridan College, Canada (2025)</li></ul></div>
+    <div class="box"><h3>Certifications</h3><ul><li>AWS Certified Cloud Practitioner (2025)</li><li>AWS Certified AI Practitioner (2025)</li></ul></div>
+    <div class="box"><h3>Languages</h3><ul><li>Arabic (native)</li><li>English (fluent)</li></ul></div>
+  </section>
+
+  <footer>The businesses in these projects are fictional demo brands built to show my work.</footer>
+</main>
+</body>
+</html>
